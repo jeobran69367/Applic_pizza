@@ -1,6 +1,7 @@
 // Dans le fichier pizza_list.dart
 import 'package:flutter/material.dart';
 import 'package:untitled2/models/pizza_data.dart';
+import 'package:untitled2/ui/pizza_details.dart';
 import '../models/Pizza.dart';
 
 class PizzaList extends StatefulWidget {
@@ -35,7 +36,35 @@ class _PizzaListState extends State<PizzaList> {
     );
   }
 
-  Widget _buildRow( pizza) {
+  Widget _buildRow(Pizza pizza) {
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(10.0),
+          top: Radius.circular(2.0),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PizzaDetails(pizza),
+                ),
+              );
+            },
+            child: _buildPizzaDetails(pizza),
+          ),
+          _buildBuyButton(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildPizzaDetails(Pizza pizza) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -47,16 +76,32 @@ class _PizzaListState extends State<PizzaList> {
         Image.asset(
           'assets/images/pizza/${pizza.image}',
           height: 120,
+          width: MediaQuery.of(context).size.width,
           fit: BoxFit.fitWidth,
         ),
-        Text(pizza.garniture),
-        ElevatedButton(
-          child: Text("Commander"),
-          onPressed: () {
-            print('Commander une pizza');
-          },
+        Container(
+          padding: const EdgeInsets.all(4.0),
+          child: Text(pizza.garniture),
         ),
       ],
+    );
+  }
+
+  Widget _buildBuyButton() {
+    return ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.red.shade800),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.shopping_cart),
+          SizedBox(width: 5),
+          Text("Commander"),
+        ],
+      ),
+      onPressed: () {
+        print('Commander une pizza');
+      },
     );
   }
 }
