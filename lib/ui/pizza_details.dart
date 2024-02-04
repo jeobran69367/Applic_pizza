@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/models/option_item.dart';
+import 'package:untitled2/ui/share/total_widget.dart';
 import '../models/Pizza.dart';
 import '../models/Pizza_data.dart';
 import '../ui/share/buy_button_widget.dart';
@@ -63,13 +64,16 @@ class _PizzaDetailsState extends State<PizzaDetails> {
           _buildDropDownSauces(),
           Text('Les sauces'),
           Text('${widget._pizza.price} £'),
-
-          _buildTotalWidget(),
-          _buildBuyButton(),
+          BuyButtonWidget(),
         ],
       ),
     );
   }
+
+  Widget _buildTotalWidget() {
+    return TotalWidget(widget._pizza.total);
+  }
+
 
   Widget _buildDropDownSauces() {
     return DropdownButton<OptionItem>(
@@ -84,14 +88,7 @@ class _PizzaDetailsState extends State<PizzaDetails> {
     );
   }
 
-  Widget _buildTotalWidget() {
-    double total = 0;
 
-    // Calcul du total en fonction du prix de la pizza sélectionnée
-    total += widget._pizza.price;
-
-    return Text('Total: $total £');
-  }
 
   Widget _buildBuyButton() {
     return ElevatedButton(
