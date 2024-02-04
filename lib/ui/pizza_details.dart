@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/models/option_item.dart';
-import 'package:untitled2/ui/share/total_widget.dart';
 import '../models/Pizza.dart';
 import '../models/Pizza_data.dart';
 import '../ui/share/buy_button_widget.dart';
@@ -62,9 +61,6 @@ class _PizzaDetailsState extends State<PizzaDetails> {
             style: PizzeriaStyle.headerTextStyle,
           ),
           _buildDropDownSauces(),
-          TotalWidget(widget._pizza.price),
-          TotalWidget(widget._pizza.total),
-          BuyButtonWidget(),
           Text('Les sauces'),
           Text('${widget._pizza.price} £'),
 
