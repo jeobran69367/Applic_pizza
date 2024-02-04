@@ -62,8 +62,7 @@ class _PizzaDetailsState extends State<PizzaDetails> {
             style: PizzeriaStyle.headerTextStyle,
           ),
           _buildDropDownSauces(),
-          Text('Les sauces'),
-          Text('${widget._pizza.price} £'),
+          TotalWidget(widget._pizza.total),
           BuyButtonWidget(),
         ],
       ),
@@ -121,16 +120,6 @@ class _PizzaDetailsState extends State<PizzaDetails> {
     );
   }
 
-  List<DropdownMenuItem<OptionItem>> _buildDropDownItem(List<OptionItem> list) {
-    return List.generate(
-      list.length,
-          (i) => DropdownMenuItem<OptionItem>(
-        value: list[i],
-        child: Text(list[i].name),
-      ),
-    );
-  }
-
   Widget _buildDropDownTailles() {
     return DropdownButton<OptionItem>(
       isExpanded: true,
@@ -143,4 +132,16 @@ class _PizzaDetailsState extends State<PizzaDetails> {
       },
     );
   }
+
+  List<DropdownMenuItem<OptionItem>> _buildDropDownItem(List<OptionItem> list) {
+    return List.generate(
+      list.length,
+          (i) => DropdownMenuItem<OptionItem>(
+        value: list[i],
+        child: Text(list[i].name),
+      ),
+    );
+  }
+
+
 }

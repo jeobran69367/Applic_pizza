@@ -32,14 +32,21 @@ class Pizza {
   double get total {
     double total = price;
 
+    if (pate >= 0 && pate < pates.length) {
+      total += pates[pate].supplement;
+    }
 
-    total += pates[pate].supplement;
-    total += pates[taille].supplement;
-    total += pates[sauce].supplement;
+    if (taille >= 0 && taille < tailles.length) {
+      total += tailles[taille].supplement;
+    }
+
+    if (sauce >= 0 && sauce < sauces.length) {
+      total += sauces[sauce].supplement;
+    }
 
     return total;
-
   }
+
 
 
 

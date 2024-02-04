@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class PizzeriaStyle {
@@ -15,9 +14,11 @@ class PizzeriaStyle {
     fontSize: 18.0,
   );
   static final TextStyle subHeaderTextStyle = baseTextStyle.copyWith(
-      fontSize: 26.0);
+    fontSize: 26.0,
+  );
   static final TextStyle itemPriceTextStyle = baseTextStyle.copyWith(
-      color: Colors.blueGrey);
+    color: Colors.blueGrey,
+  );
   static final TextStyle subPriceTextStyle = baseTextStyle.copyWith(
     color: Colors.blueGrey,
     fontSize: 20.0,
@@ -32,9 +33,4 @@ class PizzeriaStyle {
     fontSize: 20.0,
     fontWeight: FontWeight.bold,
   );
-  /*static final TextStyle subPriceTextStyle = baseTextStyle.copyWith(
-    color: Colors.blueGrey,
-    fontSize: 20.0,
-    fontWeight: FontWeight.bold,
-  );*/
 }
