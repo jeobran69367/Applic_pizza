@@ -23,14 +23,18 @@ class PizzeriaStyle {
     fontSize: 20.0,
     fontWeight: FontWeight.bold,
   );
+  static final TextStyle priceTotalTextStyle = baseTextStyle.copyWith(
+    color: Colors.indigo,
+    fontSize: 22.0,
+  );
   static final TextStyle priceSubTotalTextStyle = baseTextStyle.copyWith(
     color: Colors.blueGrey,
     fontSize: 20.0,
     fontWeight: FontWeight.bold,
   );
-  static final TextStyle priceTotalTextStyle = baseTextStyle.copyWith(
+  /*static final TextStyle subPriceTextStyle = baseTextStyle.copyWith(
     color: Colors.blueGrey,
-    fontSize: 22.0,
+    fontSize: 20.0,
     fontWeight: FontWeight.bold,
-  );
+  );*/
 }

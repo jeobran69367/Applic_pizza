@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/models/option_item.dart';
+import 'package:untitled2/ui/share/total_widget.dart';
 import '../models/Pizza.dart';
 import '../models/Pizza_data.dart';
 import '../ui/share/buy_button_widget.dart';
@@ -51,19 +53,22 @@ class _PizzaDetailsState extends State<PizzaDetails> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Expanded(child: Text('La pâte')),
-              Expanded(child: Text('La sauce')),
+              Expanded(child: _buildDropDownPates()),
+              Expanded(child: _buildDropDownTailles()),
             ],
           ),
           Text(
             'Sauce sélectionnée',
             style: PizzeriaStyle.headerTextStyle,
           ),
+          _buildDropDownSauces(),
+          TotalWidget(widget._pizza.price),
+          TotalWidget(widget._pizza.total),
+          BuyButtonWidget(),
           Text('Les sauces'),
           Text('${widget._pizza.price} £'),
 
-          _buildDropDownSauces(),
-          _buildTotalWidget(), // Appel de la méthode _buildTotalWidget sans passer le total en paramètre
+          _buildTotalWidget(),
           _buildBuyButton(),
         ],
       ),
@@ -71,17 +76,23 @@ class _PizzaDetailsState extends State<PizzaDetails> {
   }
 
   Widget _buildDropDownSauces() {
-    // Implémentez votre dropdown ici
-    return Container(); // Remplacez Container par votre widget DropdownButton
+    return DropdownButton<OptionItem>(
+      isExpanded: true,
+      value: Pizza.sauces[widget._pizza.sauce], // Valeur initiale, à adapter selon vos besoins
+      items: _buildDropDownItem(Pizza.sauces),
+      onChanged: (item) {
+        setState(() {
+          widget._pizza.sauce = item!.value;
+        });
+      },
+    );
   }
 
   Widget _buildTotalWidget() {
     double total = 0;
 
-    // Calcul du total en fonction des prix des pizzas sélectionnées
-    for (Pizza pizza in pizzaList) {
-      total += pizza.price;
-    }
+    // Calcul du total en fonction du prix de la pizza sélectionnée
+    total += widget._pizza.price;
 
     return Text('Total: $total £');
   }
@@ -100,6 +111,42 @@ class _PizzaDetailsState extends State<PizzaDetails> {
       ),
       onPressed: () {
         print('Commander une pizza');
+      },
+    );
+  }
+
+  Widget _buildDropDownPates() {
+    return DropdownButton<OptionItem>(
+      isExpanded: true,
+      value: Pizza.pates[widget._pizza.pate],
+      items: _buildDropDownItem(Pizza.pates),
+      onChanged: (item) {
+        setState(() {
+          widget._pizza.pate = item!.value;
+        });
+      },
+    );
+  }
+
+  List<DropdownMenuItem<OptionItem>> _buildDropDownItem(List<OptionItem> list) {
+    return List.generate(
+      list.length,
+          (i) => DropdownMenuItem<OptionItem>(
+        value: list[i],
+        child: Text(list[i].name),
+      ),
+    );
+  }
+
+  Widget _buildDropDownTailles() {
+    return DropdownButton<OptionItem>(
+      isExpanded: true,
+      value: Pizza.tailles[widget._pizza.taille],
+      items: _buildDropDownItem(Pizza.tailles),
+      onChanged: (item) {
+        setState(() {
+          widget._pizza.taille = item!.value;
+        });
       },
     );
   }
