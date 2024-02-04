@@ -1,11 +1,15 @@
 // Dans le fichier pizza_list.dart
 import 'package:flutter/material.dart';
+import 'package:untitled2/models/cart.dart';
 import 'package:untitled2/models/pizza_data.dart';
 import 'package:untitled2/ui/pizza_details.dart';
 import 'package:untitled2/ui/share/buy_button_widget.dart';
 import '../models/Pizza.dart';
 
 class PizzaList extends StatefulWidget {
+  final Cart _cart;
+  const PizzaList(this._cart, {Key? key}) : super(key: key);
+
   @override
   _PizzaListState createState() => _PizzaListState();
 }
@@ -53,13 +57,13 @@ class _PizzaListState extends State<PizzaList> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => PizzaDetails(pizza),
+                  builder: (context) => PizzaDetails(pizza, widget._cart),
                 ),
               );
             },
             child: _buildPizzaDetails(pizza),
           ),
-          BuyButtonWidget(),
+          BuyButtonWidget(pizza, widget._cart),
         ],
       ),
     );

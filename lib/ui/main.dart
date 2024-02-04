@@ -1,6 +1,8 @@
 // Dans le fichier main.dart
 import 'package:flutter/material.dart';
 import 'package:untitled2/models/menu.dart';
+import 'package:untitled2/ui/share/appbar_widget.dart';
+import '../models/cart.dart';
 import 'pizza_list.dart';
 
 void main() {
@@ -25,9 +27,13 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final String title;
+   String title;
+   Cart _cart;
 
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) :
+        _cart = Cart(),
+        super(key: key);
+
 
   var _menus = [
     Menu(1, 'Entrées', 'entree.png', Colors.lightGreen),
@@ -39,9 +45,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
+      appBar: AppBarWidget(title, _cart),
       body: Center(
         child: ListView.builder(
           itemCount: _menus.length,
@@ -51,7 +55,7 @@ class MyHomePage extends StatelessWidget {
                 case 2: // Pizza
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PizzaList()),
+                    MaterialPageRoute(builder: (context) => PizzaList(_cart)),
                   );
                   break;
               // Ajoutez d'autres cas pour d'autres types de menus si nécessaire
