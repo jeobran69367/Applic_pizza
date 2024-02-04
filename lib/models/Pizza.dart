@@ -6,5 +6,6 @@ class Pizza {
   final String image;
   final double price;
 
+
   Pizza(this.id, this.title, this.garniture, this.image, this.price);
 }

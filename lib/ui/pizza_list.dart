@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled2/models/pizza_data.dart';
 import 'package:untitled2/ui/pizza_details.dart';
+import 'package:untitled2/ui/share/buy_button_widget.dart';
 import '../models/Pizza.dart';
 
 class PizzaList extends StatefulWidget {
@@ -58,7 +59,7 @@ class _PizzaListState extends State<PizzaList> {
             },
             child: _buildPizzaDetails(pizza),
           ),
-          _buildBuyButton(),
+          BuyButtonWidget(),
         ],
       ),
     );
@@ -104,4 +105,6 @@ class _PizzaListState extends State<PizzaList> {
       },
     );
   }
+
+
 }
