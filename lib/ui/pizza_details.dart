@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled2/models/cart.dart';
 import 'package:untitled2/models/option_item.dart';
 import 'package:untitled2/ui/share/total_widget.dart';
 import '../models/Pizza.dart';
@@ -8,8 +9,8 @@ import '../ui/share/pizzeria_style.dart';
 
 class PizzaDetails extends StatefulWidget {
   final Pizza _pizza;
-
-  PizzaDetails(this._pizza, {Key? key}) : super(key: key);
+  final Cart _cart;
+  PizzaDetails(this._pizza, this._cart, {Key? key}) : super(key: key);
 
   @override
   State<PizzaDetails> createState() => _PizzaDetailsState();
@@ -63,7 +64,7 @@ class _PizzaDetailsState extends State<PizzaDetails> {
           ),
           _buildDropDownSauces(),
           TotalWidget(widget._pizza.total),
-          BuyButtonWidget(),
+          BuyButtonWidget(widget._pizza, widget._cart),
         ],
       ),
     );
