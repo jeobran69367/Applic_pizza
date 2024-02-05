@@ -33,4 +33,9 @@ class PizzeriaStyle {
     fontSize: 20.0,
     fontWeight: FontWeight.bold,
   );
+  static final TextStyle errorTextStyle = baseTextStyle.copyWith(
+    color: Colors.red,
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,
+  );
 }
